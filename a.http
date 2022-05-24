@@ -1,0 +1,30 @@
+
+
+@baseUrl = https://admin-test-api.uncar.top/
+GET https://mock.presstime.cn/mock/627f68011a23490028bc2bb8/example/mock
+
+
+###
+# @name loginAdmin
+
+GET  {{baseUrl}}/login.do
+      ?username=admin
+      &password=123456
+
+###
+
+GET  {{baseUrl}}/main/statisticsV4
+Content-Type: application/json
+token:{{loginAdmin.response.body.data.$.token}}
+
+ {
+     "username": "sample",
+     "password": "Wed, 21 Oct 2015 18:27:50 GMT" 
+}
+
+###
+GET https://mock.presstime.cn/mock/627f68011a23490028bc2bb8/example/proxy
+    ?page=2
+    &pageSize=10
+
+
